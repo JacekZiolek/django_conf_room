@@ -1,0 +1,68 @@
+/* colors & typography */
+
+body {
+  background: dimgray;
+  margin: 0;
+  color: #cfcfcf;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0 48px 0 0;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 0;
+}
+
+a {
+  color: silver;
+  text-decoration: none;
+}
+
+/* layout */
+header,
+footer {
+  background: midnightblue;
+  position: fixed;
+  width: 100vw;
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+}
+
+main {
+  margin: 100px auto;
+}
+
+/* buttons */
+.btn {
+  display: inline-block;
+  background-color: maroon;
+  padding: 12px 32px;
+  margin-right: 24px;
+  border: solid silver 1px;
+  border-radius: 24px;
+}
+
+.btn:hover {
+  background-color: silver;
+  color: midnightblue;
+}

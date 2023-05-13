@@ -3,8 +3,15 @@
 body {
   background: dimgray;
   margin: 0;
-  color: #cfcfcf;
+  color: silver;
   font-family: sans-serif;
+}
+
+h1,
+h2,
+p,
+a {
+  white-space: nowrap;
 }
 
 h1 {
@@ -49,7 +56,7 @@ footer {
 }
 
 main {
-  margin: 100px auto;
+  margin: 100px 0;
 }
 
 /* buttons */
@@ -65,4 +72,61 @@ main {
 .btn:hover {
   background-color: silver;
   color: midnightblue;
+}
+
+.btn-submit {
+    margin: 0;
+    background: indigo;
+    color: silver
+}
+
+.btn-submit:hover {
+    color: dimgray;
+}
+
+/* form */
+form {
+  margin: 150px auto;
+  width: 90%;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="number"] {
+  background: transparent;
+  margin: 4px;
+  border: solid silver 1px;
+  border-radius: 24px;
+  color: silver;
+  padding: 12px 32px;
+  font-size: 16px;
+  text-align: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  border: solid silver 1px;
+  border-radius: 4px;
+}
+
+input[type="checkbox"]:checked {
+  background: green;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+  color: silver;
+  font-size: 20px;
+  padding: 4px;
 }

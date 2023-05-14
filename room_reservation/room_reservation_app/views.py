@@ -1,8 +1,36 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-
+from room_reservation_app.models import Room
 
 # Create your views here.
 class Main(View):
     def get(self, request):
         return render(request, 'index.html')
+
+
+class AddRoom(View):
+    def get(self, request):
+        return render(request, 'add_room.html')
+
+    def post(self, request):
+        name = request.POST.get('name')
+        capacity = request.POST.get('capacity')
+        capacity = int(capacity) if capacity else 0
+        is_projector_available = request.POST.get('is_projector_available') == 'on'
+
+        if not name:
+            return render(request, 'add_room.html', {'error': 'room not provided!'})
+
+        if capacity < 0:
+            return render(request, 'add_room.html', {'error': 'room capacity cannot be less than zero!'})
+
+        if Room.objects.filter(name=name).first():
+            return render(request, 'add_room.html', {'error': 'room already exists!'})
+        
+        new_room = Room()
+        new_room.name = name
+        new_room.capacity = capacity
+        new_room.is_projector_available = is_projector_available
+        new_room.save()
+
+        return redirect('/')

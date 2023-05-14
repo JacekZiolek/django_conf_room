@@ -75,7 +75,7 @@ main {
 }
 
 .btn-submit {
-    margin: 0;
+    margin: 12px 0 0 0;
     background: indigo;
     color: silver
 }
@@ -129,4 +129,17 @@ input[type="checkbox"]:checked::before {
   color: silver;
   font-size: 20px;
   padding: 4px;
+}
+
+/* errors */
+
+.error {
+  background: firebrick;
+  text-transform: uppercase;
+  margin: 48px auto;
+  width: 40%;
+  padding: 36px 0;
+  border: solid silver 1px;
+  border-radius: 8px;
+  text-align: center;
 }

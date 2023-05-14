@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from room_reservation_app.models import Room
-
+from room_reservation_app.models import Room, RoomReservation
+from datetime import date, datetime
 # Create your views here.
 
 
@@ -82,11 +82,32 @@ class EditRoom(View):
         room.save()
 
         return redirect('/rooms/')
-    
-    
+
+
 class BookRoom(View):
     def get(self, request, room_id):
-        return render(request, 'book_room.html')
-    
+        return render(request, 'book_room.html', {'room_name': Room.objects.get(pk=room_id).name})
+
     def post(self, request, room_id):
-        pass
+        reservation_date = request.POST.get('reservation_date')
+        comment = request.POST.get('comment')
+
+        if datetime.strptime(reservation_date, '%Y-%m-%d').date() < date.today():
+            return render(request, 'book_room.html', {
+                'room_name': Room.objects.get(pk=room_id).name,
+                'error': 'cannot book room in the past, duh...'
+            })
+
+        if RoomReservation.objects.filter(date=reservation_date).first():
+            return render(request, 'book_room.html', {
+                'room_name': Room.objects.get(pk=room_id).name,
+                'error': 'room has been booked on given day'
+            })
+
+        booked_room = RoomReservation()
+        booked_room.room_id = Room.objects.get(pk=room_id)
+        booked_room.date = reservation_date
+        booked_room.comment = comment
+        booked_room.save()
+
+        return redirect('/rooms/')

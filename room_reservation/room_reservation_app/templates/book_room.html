@@ -1,5 +1,7 @@
 {% extends "index.html" %} {% block main %}
 <form action="" method="POST">
+  <h2>Book {{ room_name }}</h2>
+  <br>
   <label for="comment">
     <h2>Comment</h2>
   </label>
@@ -7,8 +9,9 @@
   <label for="date">
     <h2>Date</h2>
   </label>
-  <input type="date" name="date" />
+  <input type="date" name="reservation_date" />
   <br>
+  {% csrf_token %}
   <button type="submit" class="btn btn-submit">
     <p>{% block btn_content %}Book{% endblock %}</p>
   </button>

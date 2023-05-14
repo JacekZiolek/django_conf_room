@@ -43,4 +43,11 @@ class RoomList(View):
         if not room_list:
             return render(request, 'room_list.html', {'error': 'no rooms available!'})
         
-        return render(request, 'room_list.html', {'room_list': room_list})    
+        return render(request, 'room_list.html', {'room_list': room_list})
+
+
+class DeleteRoom(View):
+    def get(self, request, room_id):
+        room = Room.objects.get(pk=room_id)
+        room.delete()
+        return redirect('/rooms/')

@@ -49,10 +49,10 @@
       </a>
     </td>
   </tr>
-  {% endfor %} {% if error %}
-  <div class="error">
-    <h2>{{ error }}</h2>
-  </div>
-  {% endif %}
+  {% endfor %}
 </table>
-{% endblock %}
+{% if error %}
+<div class="error">
+  <h2>{{ error }}</h2>
+</div>
+{% endif %} {% endblock %}

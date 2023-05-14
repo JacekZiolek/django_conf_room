@@ -85,3 +85,11 @@ class EditRoom(View):
         room.save()
 
         return redirect('/rooms/')
+    
+    
+class BookRoom(View):
+    def get(self, request, room_id):
+        return render(request, 'book_room.html')
+    
+    def post(self, request, room_id):
+        pass

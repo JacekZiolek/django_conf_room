@@ -18,11 +18,17 @@
         <a href="/" class="btn">Home</a>
       </p>
     </header>
-    <main>{% block main %}
+    <main>
+      {% block main %}
       <div class="welcome">
         <h1>Welcome to room reservation app.</h1>
       </div>
-      {% endblock %}</main>
+      {% endblock %} {% if error %}
+      <div class="error">
+        <h2>{{ error }}</h2>
+      </div>
+      {% endif %}
+    </main>
     <footer>
       <h2>© 2023 github.com/JacekZiolek</h2>
     </footer>

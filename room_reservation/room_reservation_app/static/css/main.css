@@ -101,7 +101,8 @@ table {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="date"] {
   background: transparent;
   margin: 4px;
   border: solid silver 1px;

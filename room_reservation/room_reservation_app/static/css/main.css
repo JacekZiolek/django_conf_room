@@ -60,6 +60,12 @@ main {
   margin: 100px 0;
 }
 
+.welcome {
+  width: 90%;
+  margin: 300px auto;
+  text-align: center;
+}
+
 /* buttons */
 .btn {
   display: inline-block;

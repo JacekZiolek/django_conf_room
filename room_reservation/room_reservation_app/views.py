@@ -76,9 +76,6 @@ class EditRoom(View):
         if capacity < 0:
             return render(request, 'edit_room.html', {'error': 'room capacity cannot be less than zero!', 'room': room})
 
-        if Room.objects.filter(name=name).first():
-            return render(request, 'edit_room.html', {'error': 'room already exists!', 'room': room})
-
         room.name = name
         room.capacity = capacity
         room.is_projector_available = is_projector_available

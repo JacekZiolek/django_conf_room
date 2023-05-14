@@ -51,3 +51,33 @@ class DeleteRoom(View):
         room = Room.objects.get(pk=room_id)
         room.delete()
         return redirect('/rooms/')
+    
+    
+class EditRoom(View):
+    def get(self, request, room_id):
+        room = Room.objects.get(pk=room_id)
+        return render(request, "edit_room.html", {'room': room})
+    
+    def post(self, request, room_id):
+        room = Room.objects.get(pk=room_id)
+        
+        name = request.POST.get('name')
+        capacity = request.POST.get('capacity')
+        capacity = int(capacity) if capacity else 0
+        is_projector_available = request.POST.get('is_projector_available') == 'on'
+
+        if not name:
+            return render(request, 'edit_room.html', {'error': 'room not provided!', 'room': room})
+
+        if capacity < 0:
+            return render(request, 'edit_room.html', {'error': 'room capacity cannot be less than zero!', 'room': room})
+
+        if Room.objects.filter(name=name).first():
+            return render(request, 'edit_room.html', {'error': 'room already exists!', 'room': room})
+        
+        room.name = name
+        room.capacity = capacity
+        room.is_projector_available = is_projector_available
+        room.save()
+        
+        return redirect('/rooms/')

@@ -34,3 +34,13 @@ class AddRoom(View):
         new_room.save()
 
         return redirect('/')
+    
+    
+class RoomList(View):
+    def get(self, request):
+        room_list = Room.objects.all()
+        
+        if not room_list:
+            return render(request, 'room_list.html', {'error': 'no rooms available!'})
+        
+        return render(request, 'room_list.html', {'room_list': room_list})    

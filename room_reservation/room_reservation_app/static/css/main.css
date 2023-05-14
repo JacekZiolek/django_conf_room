@@ -10,7 +10,8 @@ body {
 h1,
 h2,
 p,
-a {
+a,
+table {
   white-space: nowrap;
 }
 
@@ -69,23 +70,25 @@ main {
   border-radius: 24px;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   background-color: silver;
   color: midnightblue;
 }
 
 .btn-submit {
-    margin: 12px 0 0 0;
-    background: indigo;
-    color: silver
+  margin: 12px 0 0 0;
+  background: indigo;
+  color: silver;
 }
 
 .btn-submit:hover {
-    color: dimgray;
+  color: dimgray;
 }
 
 /* form */
-form {
+form,
+table {
   margin: 150px auto;
   width: 90%;
   text-align: center;
@@ -142,4 +145,42 @@ input[type="checkbox"]:checked::before {
   border: solid silver 1px;
   border-radius: 8px;
   text-align: center;
+}
+
+/* room list */
+
+th,
+td {
+  padding: 12px 36px;
+}
+
+th {
+  background: maroon;
+}
+
+td {
+  background: midnightblue;
+}
+
+.btn-actions {
+  display: inline-block;
+  border: solid silver 1px;
+  border-radius: 16px;
+  padding: 4px 12px;
+}
+
+.btn-actions:hover,
+.btn-actions:focus {
+  background: silver;
+  color: midnightblue;
+}
+
+.room-name {
+  text-decoration: none;
+}
+
+.room-name:hover,
+.room-name:focus {
+  font-weight: bold;
+  color: firebrick;
 }

@@ -1,0 +1,58 @@
+{% extends "index.html" %} {% block main %}
+<table>
+  <tr>
+    <th>
+      <p>Room Name</p>
+    </th>
+    <th>
+      <p>Room Capacity</p>
+    </th>
+    <th>
+      <p>Is room available?</p>
+    </th>
+    <th>
+      <p>Is projector available?</p>
+    </th>
+    <th>
+      <p>Actions</p>
+    </th>
+  </tr>
+  {% for room in room_list %}
+  <tr>
+    <td>
+      <a href="#" class="room-name">
+        <p>{{ room.name }}</p>
+      </a>
+    </td>
+    <td>
+      <p>{{ room.capacity }}</p>
+    </td>
+    <td>
+      <p>under construction</p>
+    </td>
+    <td>
+      {% if room.is_projector_available %}
+      <p>Open</p>
+      {% else %}
+      <p>Booked</p>
+      {% endif %}
+    </td>
+    <td>
+      <a href="/room/modify/{{ room.id }}/" class="btn-actions">
+        <p>edit</p>
+      </a>
+      <a href="/room/delete/{{ room.id }}/" class="btn-actions">
+        <p>delete</p>
+      </a>
+      <a href="/room/reserve/{{room.id}}/" class="btn-actions">
+        <p>book</p>
+      </a>
+    </td>
+  </tr>
+  {% endfor %} {% if error %}
+  <div class="error">
+    <h2>{{ error }}</h2>
+  </div>
+  {% endif %}
+</table>
+{% endblock %}

@@ -20,7 +20,7 @@
   {% for room in room_list %}
   <tr>
     <td>
-      <a href="#" class="room-name">
+      <a href="/room/details/{{ room.id }}/" class="room-name">
         <p>{{ room.name }}</p>
       </a>
     </td>
@@ -28,7 +28,11 @@
       <p>{{ room.capacity }}</p>
     </td>
     <td>
-      <p>under construction</p>
+      {% if room.is_booked %}
+      <p>Booked</p>
+      {% else %}
+      <p>Opened</p>
+      {% endif %}
     </td>
     <td>
       {% if room.is_projector_available %}

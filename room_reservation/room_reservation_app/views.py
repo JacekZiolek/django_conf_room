@@ -42,11 +42,15 @@ class AddRoom(View):
 class RoomList(View):
     def get(self, request):
         room_list = Room.objects.all()
+        for room in room_list:
+            room.is_booked = bool(room.roomreservation_set.filter(date=date.today()))
 
         if not room_list:
             return render(request, 'room_list.html', {'error': 'no rooms available!'})
 
-        return render(request, 'room_list.html', {'room_list': room_list})
+        return render(request, 'room_list.html', {
+            'room_list': room_list,
+        })
 
 
 class DeleteRoom(View):
@@ -98,7 +102,7 @@ class BookRoom(View):
                 'error': 'cannot book room in the past, duh...'
             })
 
-        if RoomReservation.objects.filter(date=reservation_date).first():
+        if RoomReservation.objects.filter(room_id=room_id).filter(date=reservation_date):
             return render(request, 'book_room.html', {
                 'room_name': Room.objects.get(pk=room_id).name,
                 'error': 'room has been booked on given day'
@@ -111,3 +115,14 @@ class BookRoom(View):
         booked_room.save()
 
         return redirect('/rooms/')
+
+
+class RoomDetails(View):
+    def get(self, request, room_id):
+        room = Room.objects.get(pk=room_id)
+        reservations = room.roomreservation_set.filter(
+            room_id=room_id).filter(date__gte=date.today()).order_by('date')
+        return render(request, 'room_details.html', {
+            'room': room,
+            'reservations': reservations
+        })
